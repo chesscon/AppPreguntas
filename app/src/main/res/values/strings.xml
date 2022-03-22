@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AppPreguntas</string>
+    <string name="texto_inicial">Texto de ejemplo 1</string>
+    <string name="txt_verdadero">Verdadero</string>
+    <string name="txt_falso">Falso</string>
+    <string name="txt_sig">Siguiente</string>
+    <string name="pregunta_1">Una hormiga solo puede levantar objetos de su mismo peso</string>
+    <string name="pregunta_2">El alfabeto griego tiene una letra llamada "Gamma"</string>
+    <string name="pregunta_3">El papel se inventó en el antiguo Egipto</string>
+    <string name="txt_correct_toast">Respuesta correcta! =)</string>
+    <string name="txt_incorrect_toast">Respuesta incorrecta! =(</string>
+</resources>
