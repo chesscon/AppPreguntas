@@ -9,4 +9,5 @@
     <string name="pregunta_3">El papel se inventó en el antiguo Egipto</string>
     <string name="txt_correct_toast">Respuesta correcta! =)</string>
     <string name="txt_incorrect_toast">Respuesta incorrecta! =(</string>
+    <string name="contador_inicial">Puntación: 0</string>
 </resources>

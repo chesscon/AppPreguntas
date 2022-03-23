@@ -17,10 +17,12 @@ public class MainActivity extends Activity {
     private Button btnFalse;
     private Button btnNext;
     private TextView textView;
+    private TextView txtContador;
 
     private Question[] questionBank;
 
     private int indexCurrentQuestion = 0;
+    private int contador = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class MainActivity extends Activity {
         btnTrue = (Button) findViewById(R.id.btn_true);
         btnFalse = (Button) findViewById(R.id.btn_false);
         textView = (TextView) findViewById(R.id.txt_pregunta);
+        txtContador = (TextView) findViewById(R.id.txt_contador);
         updateQuestion();
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.main_layout);
@@ -52,6 +55,7 @@ public class MainActivity extends Activity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                indexCurrentQuestion++;
                 Log.d(LOG_TAG, "BTN NEXT pressed, indexCurrentQuestion: " + indexCurrentQuestion);
                 if (indexCurrentQuestion >= questionBank.length-1) {
                     btnNext.setEnabled(false);
@@ -67,7 +71,7 @@ public class MainActivity extends Activity {
                 checkAnswer(true);
             }
         });
-
+        // listener vs subscriber
         btnFalse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,6 +84,8 @@ public class MainActivity extends Activity {
     private void updateQuestion() {
         Question currentQuestion = questionBank[indexCurrentQuestion];
         textView.setText(currentQuestion.getText());
+        btnTrue.setEnabled(true);
+        btnFalse.setEnabled(true);
     }
 
     private void checkAnswer(boolean userPressedTrue) {
@@ -89,9 +95,16 @@ public class MainActivity extends Activity {
 
         if (currentQuestion.isAnswerTrue() == userPressedTrue) {
             messageResId = R.string.txt_correct_toast;
+            // Si la respuesta es correcta, sumamos un punto:
+            contador++;
         } else {
             messageResId = R.string.txt_incorrect_toast;
         }
+        // Bloquear botones
+        btnTrue.setEnabled(false);
+        btnFalse.setEnabled(false);
+        // Actualizar texto del contador:
+        txtContador.setText("Puntación :" + contador);
 
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
                 .show();
