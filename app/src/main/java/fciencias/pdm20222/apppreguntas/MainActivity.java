@@ -1,6 +1,7 @@
 package fciencias.pdm20222.apppreguntas;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    public static final String EXTRA_POINTS = "PUNTOS";
 
     private Button btnTrue;
     private Button btnFalse;
@@ -30,7 +32,6 @@ public class MainActivity extends Activity {
         setContentView( R.layout.activity_main);
         this.questionBank = this.getQuestionBank();
         this.initViewReferences();
-
     }
 
     public void clickEnFalse(View view) {
@@ -46,21 +47,21 @@ public class MainActivity extends Activity {
         txtContador = (TextView) findViewById(R.id.txt_contador);
         updateQuestion();
 
-        LinearLayout layout = (LinearLayout) findViewById(R.id.main_layout);
-
-        this.btnNext = new Button(this);
-        btnNext.setText(R.string.txt_sig);
-        layout.addView(btnNext);
+        btnNext = (Button) findViewById(R.id.btn_next);
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 indexCurrentQuestion++;
                 Log.d(LOG_TAG, "BTN NEXT pressed, indexCurrentQuestion: " + indexCurrentQuestion);
-                if (indexCurrentQuestion >= questionBank.length-1) {
+                if (indexCurrentQuestion >= questionBank.length) {
                     btnNext.setEnabled(false);
+                    Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+                    intent.putExtra(EXTRA_POINTS, contador);
+                    startActivity(intent);
+                } else {
+                    updateQuestion();
                 }
-                updateQuestion();
             }
         });
 
