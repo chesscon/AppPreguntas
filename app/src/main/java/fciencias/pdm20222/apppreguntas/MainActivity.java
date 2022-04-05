@@ -2,6 +2,7 @@ package fciencias.pdm20222.apppreguntas;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,8 @@ public class MainActivity extends Activity {
     private Button btnTrue;
     private Button btnFalse;
     private Button btnNext;
+    private Button btnPagFC;
+    private Button btnMapFC;
     private TextView textView;
     private TextView txtContador;
 
@@ -44,6 +47,8 @@ public class MainActivity extends Activity {
         btnTrue = (Button) findViewById(R.id.btn_true);
         btnFalse = (Button) findViewById(R.id.btn_false);
         textView = (TextView) findViewById(R.id.txt_pregunta);
+        btnPagFC = (Button) findViewById(R.id.btn_pag_fc);
+        btnMapFC = (Button) findViewById(R.id.btn_map_fc);
         txtContador = (TextView) findViewById(R.id.txt_contador);
         updateQuestion();
 
@@ -78,6 +83,27 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 //Log.d( LOG_TAG, "Mensaje de Prueba");
                 checkAnswer(false);
+            }
+        });
+
+        btnPagFC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                //intent.setData(Uri.parse("http://www.fciencias.unam.mx"));
+                intent.setData(Uri.parse("geo:19.3242765,-99.1791318"));
+                startActivity(intent);
+            }
+        });
+
+        btnMapFC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://goo.gl/maps/cTrjN7MhWxSqbF1K7"));
+                startActivity(intent);
             }
         });
     }

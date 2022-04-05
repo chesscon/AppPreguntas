@@ -10,4 +10,6 @@
     <string name="txt_correct_toast">Respuesta correcta! =)</string>
     <string name="txt_incorrect_toast">Respuesta incorrecta! =(</string>
     <string name="contador_inicial">Puntación: 0</string>
+    <string name="txt_pag_fac">Página de la FCiencias</string>
+    <string name="txt_map_fac">Mapa de FCiencias</string>
 </resources>
