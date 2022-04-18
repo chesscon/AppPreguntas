@@ -12,4 +12,10 @@
     <string name="contador_inicial">Puntación: 0</string>
     <string name="txt_pag_fac">Página de la FCiencias</string>
     <string name="txt_map_fac">Mapa de FCiencias</string>
+
+    <string-array name="categorias">
+        <item>Ajedrez</item>
+        <item>Matemáticas</item>
+        <item>Aleatorias</item>
+    </string-array>
 </resources>
