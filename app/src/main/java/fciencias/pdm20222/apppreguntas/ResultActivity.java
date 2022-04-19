@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 
-public class ResultActivity extends Activity {
+public class ResultActivity extends LogCicloVidaActividad {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

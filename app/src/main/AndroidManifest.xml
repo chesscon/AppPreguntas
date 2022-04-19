@@ -10,9 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppPreguntas">
         <activity
+            android:name=".LogCicloVidaActividad"
+            android:exported="false" />
+        <activity
             android:name=".ResultActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

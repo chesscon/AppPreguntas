@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends LogCicloVidaActividad {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     public static final String EXTRA_POINTS = "PUNTOS";
