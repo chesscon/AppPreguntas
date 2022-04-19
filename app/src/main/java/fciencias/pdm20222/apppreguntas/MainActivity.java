@@ -11,10 +11,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 public class MainActivity extends LogCicloVidaActividad {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     public static final String EXTRA_POINTS = "PUNTOS";
+    public static final String KEY_CONTADOR = "CONTADOR";
+    public static final String KEY_CURRENT = "CURRENT";
 
     private Button btnTrue;
     private Button btnFalse;
@@ -26,12 +30,19 @@ public class MainActivity extends LogCicloVidaActividad {
 
     private Question[] questionBank;
 
+
     private int indexCurrentQuestion = 0;
     private int contador = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            this.contador = savedInstanceState.getInt(KEY_CONTADOR);
+            this.indexCurrentQuestion = savedInstanceState.getInt(KEY_CURRENT);
+        }
+
         setContentView( R.layout.activity_main);
         this.questionBank = this.getQuestionBank();
         this.initViewReferences();
@@ -143,5 +154,12 @@ public class MainActivity extends LogCicloVidaActividad {
                 new Question( getString(R.string.pregunta_2) , true),
                 new Question( getString(R.string.pregunta_3), false),
         };
+    }
+
+    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt(KEY_CONTADOR, this.contador);
+        savedInstanceState.putInt(KEY_CURRENT, this.indexCurrentQuestion);
+        Log.i(LOG_TAG, "onSaveInstanceState(), guardando datos...");
     }
 }
