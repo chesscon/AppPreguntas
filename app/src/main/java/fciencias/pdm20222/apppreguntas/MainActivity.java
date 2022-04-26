@@ -149,10 +149,11 @@ public class MainActivity extends LogCicloVidaActividad {
     }
 
     private Question [] getQuestionBank() {
+        Category category = new Category("Default");
         return new Question[] {
-                new Question( getString(R.string.pregunta_1) , false),
-                new Question( getString(R.string.pregunta_2) , true),
-                new Question( getString(R.string.pregunta_3), false),
+                new Question( getString(R.string.pregunta_1) , false, category),
+                new Question( getString(R.string.pregunta_2) , true, category),
+                new Question( getString(R.string.pregunta_3), false, category),
         };
     }
 
