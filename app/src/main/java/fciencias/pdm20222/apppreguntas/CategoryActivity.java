@@ -18,8 +18,8 @@ public class CategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category);
         listView = (ListView) findViewById(R.id.category_list);
 
-        ArrayAdapter<Category> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, ,getCategoryNames());
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, getCategoryNames());
         listView.setAdapter(adapter);
     }
 
