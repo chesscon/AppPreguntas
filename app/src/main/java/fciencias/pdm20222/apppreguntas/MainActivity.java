@@ -155,35 +155,35 @@ public class MainActivity extends LogCicloVidaActividad {
     }
 
     private Question [] getQuestionBank() {
-        Category cRandom = new Category("Random");
+        Category cRandom = new Category("Random", 0);
         Question[] questionsRandom = new Question[] {
                 new Question( getString(R.string.pregunta_1) , false, cRandom),
                 new Question( getString(R.string.pregunta_2) , true, cRandom),
                 new Question( getString(R.string.pregunta_3), false, cRandom),
         };
 
-        Category cAnimals = new Category("Animales");
+        Category cAnimals = new Category("Animales", 1);
         Question[] questionsAnimals = new Question[] {
                 new Question( "Pregunta de Animales 1" , true, cAnimals),
                 new Question( "Pregunta de Animales 2" , false, cAnimals),
                 new Question( "Pregunta de Animales 3" , true, cAnimals),
         };
 
-        Category cPlants = new Category("Plantas");
+        Category cPlants = new Category("Plantas", 2);
         Question[] questionsPlants = new Question[] {
                 new Question( "Pregunta de Plantas 1" , true, cPlants),
                 new Question( "Pregunta de Plantas 2" , false, cPlants),
                 new Question( "Pregunta de Plantas 3" , true, cPlants),
         };
 
-        Category cHistory = new Category("Historia");
+        Category cHistory = new Category("Historia", 3);
         Question[] questionsHistory = new Question[] {
                 new Question( "Pregunta de Historia 1" , true, cHistory),
                 new Question( "Pregunta de Historia 2" , false, cHistory),
                 new Question( "Pregunta de Historia 3" , true, cHistory),
         };
 
-        Category cProgramming = new Category("Programación");
+        Category cProgramming = new Category("Programación", 4);
         Question[] questionsProgramming = new Question[] {
                 new Question( "Pregunta de Progamación 1" , true, cHistory),
                 new Question( "Pregunta de Progamación 2" , false, cHistory),
