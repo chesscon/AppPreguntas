@@ -33,11 +33,11 @@ public class CategoryActivity extends AppCompatActivity {
             @Override
             public void onItemClick (AdapterView<?> parent, View view,
                                      int position, long id ) {
-                String elemento = (String) adapter.getItem(position);
-                Toast.makeText(CategoryActivity.this, elemento, Toast.LENGTH_LONG).show();
+                Category elemento = (Category) adapter.getItem(position);
+                Toast.makeText(CategoryActivity.this, elemento.getName(), Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(CategoryActivity.this, MainActivity.class);
-                intent.putExtra( CategoryActivity.EXTRA_CATEGORY_ID, position );
-                intent.putExtra( CategoryActivity.EXTRA_CATEGORY_NAME, elemento );
+                intent.putExtra( CategoryActivity.EXTRA_CATEGORY_ID, elemento.getId() );
+                intent.putExtra( CategoryActivity.EXTRA_CATEGORY_NAME, elemento.getName() );
                 startActivity(intent);
             }
         });
