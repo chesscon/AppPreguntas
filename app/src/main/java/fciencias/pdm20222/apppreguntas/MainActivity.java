@@ -183,8 +183,15 @@ public class MainActivity extends LogCicloVidaActividad {
                 new Question( "Pregunta de Historia 3" , true, cHistory),
         };
 
+        Category cProgramming = new Category("Programación");
+        Question[] questionsProgramming = new Question[] {
+                new Question( "Pregunta de Progamación 1" , true, cHistory),
+                new Question( "Pregunta de Progamación 2" , false, cHistory),
+                new Question( "Pregunta de Progamación 3" , true, cHistory),
+        };
+
         Category[] categorias = new Category[] {
-                cRandom, cAnimals, cPlants, cHistory
+                cRandom, cAnimals, cPlants, cHistory, cProgramming
         };
 
         Question[] result;
@@ -200,6 +207,9 @@ public class MainActivity extends LogCicloVidaActividad {
                 break;
             case 3:
                 result = questionsHistory;
+                break;
+            case 4:
+                result = questionsProgramming;
                 break;
             default:
             case 0:

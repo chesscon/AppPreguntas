@@ -50,7 +50,7 @@ public class CategoryActivity extends AppCompatActivity {
                 new Category("Animales"),
                 new Category("Plantas"),
                 new Category( "Historia"),
-                //new Category( "Programación"),
+                new Category( "Programación"),
                 //new Category( "Matemáticas"),
         };
     }
