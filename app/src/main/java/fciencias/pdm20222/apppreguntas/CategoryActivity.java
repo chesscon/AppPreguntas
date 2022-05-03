@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CategoryActivity extends AppCompatActivity {
 
@@ -25,8 +26,7 @@ public class CategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category);
         listView = (ListView) findViewById(R.id.category_list);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, getCategoryNames());
+        CategoryAdapter adapter = new CategoryAdapter(this, R.layout.category_list_item, getCategoryArray());
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -46,12 +46,12 @@ public class CategoryActivity extends AppCompatActivity {
 
     private Category [] getCategoryBank() {
         return new Category[] {
-                new Category("Aleatoria"),
-                new Category("Animales"),
-                new Category("Plantas"),
-                new Category( "Historia"),
-                new Category( "Programación"),
-                //new Category( "Matemáticas"),
+                new Category("Aleatoria", 0),
+                new Category("Animales", 1),
+                new Category("Plantas", 2),
+                new Category( "Historia", 3),
+                new Category( "Programación", 4),
+                //new Category( "Matemáticas", 5),
         };
     }
 
@@ -62,6 +62,11 @@ public class CategoryActivity extends AppCompatActivity {
             list.add(category.getName());
         }
         return list;
+    }
+
+    private ArrayList<Category> getCategoryArray() {
+        Category [] categories = getCategoryBank();
+        return new ArrayList<Category>(Arrays.asList(categories));
     }
 
 }
