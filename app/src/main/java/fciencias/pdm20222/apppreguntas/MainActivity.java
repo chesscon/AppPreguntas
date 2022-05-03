@@ -34,6 +34,9 @@ public class MainActivity extends LogCicloVidaActividad {
     private int indexCurrentQuestion = 0;
     private int contador = 0;
 
+    private int categoryId;
+    private String categoryName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,9 @@ public class MainActivity extends LogCicloVidaActividad {
             this.contador = savedInstanceState.getInt(KEY_CONTADOR);
             this.indexCurrentQuestion = savedInstanceState.getInt(KEY_CURRENT);
         }
+        Intent intent = getIntent();
+        this.categoryId = intent.getIntExtra(CategoryActivity.EXTRA_CATEGORY_ID, 0);
+        this.categoryName = intent.getStringExtra(CategoryActivity.EXTRA_CATEGORY_NAME);
 
         setContentView( R.layout.activity_main);
         this.questionBank = this.getQuestionBank();
@@ -149,12 +155,58 @@ public class MainActivity extends LogCicloVidaActividad {
     }
 
     private Question [] getQuestionBank() {
-        Category category = new Category("Default");
-        return new Question[] {
-                new Question( getString(R.string.pregunta_1) , false, category),
-                new Question( getString(R.string.pregunta_2) , true, category),
-                new Question( getString(R.string.pregunta_3), false, category),
+        Category cRandom = new Category("Random");
+        Question[] questionsRandom = new Question[] {
+                new Question( getString(R.string.pregunta_1) , false, cRandom),
+                new Question( getString(R.string.pregunta_2) , true, cRandom),
+                new Question( getString(R.string.pregunta_3), false, cRandom),
         };
+
+        Category cAnimals = new Category("Animales");
+        Question[] questionsAnimals = new Question[] {
+                new Question( "Pregunta de Animales 1" , true, cAnimals),
+                new Question( "Pregunta de Animales 2" , false, cAnimals),
+                new Question( "Pregunta de Animales 3" , true, cAnimals),
+        };
+
+        Category cPlants = new Category("Plantas");
+        Question[] questionsPlants = new Question[] {
+                new Question( "Pregunta de Plantas 1" , true, cPlants),
+                new Question( "Pregunta de Plantas 2" , false, cPlants),
+                new Question( "Pregunta de Plantas 3" , true, cPlants),
+        };
+
+        Category cHistory = new Category("Historia");
+        Question[] questionsHistory = new Question[] {
+                new Question( "Pregunta de Historia 1" , true, cHistory),
+                new Question( "Pregunta de Historia 2" , false, cHistory),
+                new Question( "Pregunta de Historia 3" , true, cHistory),
+        };
+
+        Category[] categorias = new Category[] {
+                cRandom, cAnimals, cPlants, cHistory
+        };
+
+        Question[] result;
+
+        Log.d(LOG_TAG, "ID de la categoria: " + this.categoryId );
+
+        switch (this.categoryId) {
+            case 1:
+                result = questionsAnimals;
+                break;
+            case 2:
+                result = questionsPlants;
+                break;
+            case 3:
+                result = questionsHistory;
+                break;
+            default:
+            case 0:
+                result = questionsRandom;
+                break;
+        }
+        return result;
     }
 
     public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
