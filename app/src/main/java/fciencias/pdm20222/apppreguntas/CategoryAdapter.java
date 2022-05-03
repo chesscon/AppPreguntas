@@ -50,7 +50,7 @@ public class CategoryAdapter extends BaseAdapter {
 
         // Referenciamos el elemento a modificar y lo rellenamos
         TextView textView = (TextView) v.findViewById(R.id.textViewCategoryItem);
-        textView.setText(category.getName());
+        textView.setText(category.getId() + " - " + category.getName());
 
         ImageView imageView = (ImageView) v.findViewById(R.id.imageViewCategory);
         switch (category.getId()) {
