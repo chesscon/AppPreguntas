@@ -1,7 +1,9 @@
 package fciencias.pdm20222.apppreguntas;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,6 +47,11 @@ public class MainActivity extends LogCicloVidaActividad {
             this.contador = savedInstanceState.getInt(KEY_CONTADOR);
             this.indexCurrentQuestion = savedInstanceState.getInt(KEY_CURRENT);
         }
+
+        SharedPreferences preferences =  getPreferences(Context.MODE_PRIVATE);
+        this.contador = preferences.getInt(KEY_CONTADOR, this.contador);
+        this.indexCurrentQuestion = preferences.getInt(KEY_CURRENT, this.indexCurrentQuestion);
+
         Intent intent = getIntent();
         this.categoryId = intent.getIntExtra(CategoryActivity.EXTRA_CATEGORY_ID, 0);
         this.categoryName = intent.getStringExtra(CategoryActivity.EXTRA_CATEGORY_NAME);
@@ -149,6 +156,12 @@ public class MainActivity extends LogCicloVidaActividad {
         btnFalse.setEnabled(false);
         // Actualizar texto del contador:
         txtContador.setText("Puntación :" + contador);
+
+        SharedPreferences preferences =  getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(KEY_CONTADOR, this.contador);
+        editor.putInt(KEY_CURRENT, this.indexCurrentQuestion);
+        editor.apply();
 
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
                 .show();
