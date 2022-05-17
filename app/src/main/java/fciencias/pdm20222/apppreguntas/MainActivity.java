@@ -15,12 +15,19 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class MainActivity extends LogCicloVidaActividad {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     public static final String EXTRA_POINTS = "PUNTOS";
     public static final String KEY_CONTADOR = "CONTADOR";
     public static final String KEY_CURRENT = "CURRENT";
+
+    public static final String FILE_NAME_TEST = "puntuacion.txt";
 
     private Button btnTrue;
     private Button btnFalse;
@@ -60,6 +67,24 @@ public class MainActivity extends LogCicloVidaActividad {
 
         Log.d(TAG, "Contador preferences: " + this.contador);
         Log.d(TAG, "Indice preferences: " + this.indexCurrentQuestion);
+
+        try {
+            FileInputStream fileInputStream = openFileInput(FILE_NAME_TEST);
+            int read = -1;
+            StringBuffer buffer = new StringBuffer();
+            while((read = fileInputStream.read()) != -1 ) {
+                buffer.append((char) read);
+            }
+            fileInputStream.close();
+            String data = buffer.toString();
+            Log.d(TAG,"Datos leidos del archivo: " + data);
+        } catch (FileNotFoundException e) {
+            Log.e(TAG, "ocurrio un error al intentar abrir el archivo:" + FILE_NAME_TEST);
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(TAG, "ocurrio un error al intentar leer el archivo:" + FILE_NAME_TEST);
+        }
 
         Intent intent = getIntent();
         this.categoryId = intent.getIntExtra(CategoryActivity.EXTRA_CATEGORY_ID, 0);
@@ -172,6 +197,20 @@ public class MainActivity extends LogCicloVidaActividad {
         editor.putInt(KEY_CONTADOR, this.contador);
         editor.putInt(KEY_CURRENT, this.indexCurrentQuestion);
         editor.apply();
+
+        String data = "Mensaje de Prueba";
+        try {
+            FileOutputStream fileOutputStream = openFileOutput(FILE_NAME_TEST, Context.MODE_PRIVATE);
+            byte [] bytes = data.getBytes();
+            fileOutputStream.write(bytes);
+            fileOutputStream.close();
+        } catch (FileNotFoundException e) {
+            Log.e(TAG, "ocurrio un error al intentar abrir el archivo:" + FILE_NAME_TEST);
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(TAG, "ocurrio un error al intentar escribir en el archivo:" + FILE_NAME_TEST);
+        }
 
         Log.d(TAG, "Contador guardado: " + this.contador);
         Log.d(TAG, "Indice guardado: " + this.indexCurrentQuestion);
