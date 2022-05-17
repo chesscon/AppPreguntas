@@ -43,14 +43,23 @@ public class MainActivity extends LogCicloVidaActividad {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.d(TAG, "Contador Inicial: " + this.contador);
+        Log.d(TAG, "Indice Inicial: " + this.indexCurrentQuestion);
+
         if (savedInstanceState != null) {
             this.contador = savedInstanceState.getInt(KEY_CONTADOR);
             this.indexCurrentQuestion = savedInstanceState.getInt(KEY_CURRENT);
+
+            Log.d(TAG, "Contador savedInstanceState: " + this.contador);
+            Log.d(TAG, "Indice savedInstanceState: " + this.indexCurrentQuestion);
         }
 
         SharedPreferences preferences =  getPreferences(Context.MODE_PRIVATE);
         this.contador = preferences.getInt(KEY_CONTADOR, this.contador);
-        this.indexCurrentQuestion = preferences.getInt(KEY_CURRENT, this.indexCurrentQuestion);
+        //this.indexCurrentQuestion = preferences.getInt(KEY_CURRENT, this.indexCurrentQuestion);
+
+        Log.d(TAG, "Contador preferences: " + this.contador);
+        Log.d(TAG, "Indice preferences: " + this.indexCurrentQuestion);
 
         Intent intent = getIntent();
         this.categoryId = intent.getIntExtra(CategoryActivity.EXTRA_CATEGORY_ID, 0);
@@ -74,6 +83,7 @@ public class MainActivity extends LogCicloVidaActividad {
         btnPagFC = (Button) findViewById(R.id.btn_pag_fc);
         btnMapFC = (Button) findViewById(R.id.btn_map_fc);
         txtContador = (TextView) findViewById(R.id.txt_contador);
+        txtContador.setText("Puntacion: " + this.contador);
         updateQuestion();
 
         btnNext = (Button) findViewById(R.id.btn_next);
@@ -162,6 +172,9 @@ public class MainActivity extends LogCicloVidaActividad {
         editor.putInt(KEY_CONTADOR, this.contador);
         editor.putInt(KEY_CURRENT, this.indexCurrentQuestion);
         editor.apply();
+
+        Log.d(TAG, "Contador guardado: " + this.contador);
+        Log.d(TAG, "Indice guardado: " + this.indexCurrentQuestion);
 
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
                 .show();
