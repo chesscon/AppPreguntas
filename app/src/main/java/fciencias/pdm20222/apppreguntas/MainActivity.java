@@ -20,6 +20,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import fciencias.pdm20222.apppreguntas.repository.BankQuestionsArrayRepository;
+
 public class MainActivity extends LogCicloVidaActividad {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -39,12 +41,13 @@ public class MainActivity extends LogCicloVidaActividad {
 
     private Question[] questionBank;
 
-
     private int indexCurrentQuestion = 0;
     private int contador = 0;
 
     private int categoryId;
     private String categoryName;
+
+    private BankQuestionsArrayRepository questionsRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,8 @@ public class MainActivity extends LogCicloVidaActividad {
 
         Log.d(TAG, "Contador Inicial: " + this.contador);
         Log.d(TAG, "Indice Inicial: " + this.indexCurrentQuestion);
+
+        questionsRepository = new BankQuestionsArrayRepository(getBaseContext());
 
         if (savedInstanceState != null) {
             this.contador = savedInstanceState.getInt(KEY_CONTADOR);
@@ -91,7 +96,7 @@ public class MainActivity extends LogCicloVidaActividad {
         this.categoryName = intent.getStringExtra(CategoryActivity.EXTRA_CATEGORY_NAME);
 
         setContentView( R.layout.activity_main);
-        this.questionBank = this.getQuestionBank();
+        this.questionBank = questionsRepository.getQuestionBank(this.categoryId);
         this.initViewReferences();
     }
 
@@ -217,71 +222,6 @@ public class MainActivity extends LogCicloVidaActividad {
 
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
                 .show();
-    }
-
-    private Question [] getQuestionBank() {
-        Category cRandom = new Category("Random", 0);
-        Question[] questionsRandom = new Question[] {
-                new Question( getString(R.string.pregunta_1) , false, cRandom),
-                new Question( getString(R.string.pregunta_2) , true, cRandom),
-                new Question( getString(R.string.pregunta_3), false, cRandom),
-        };
-
-        Category cAnimals = new Category("Animales", 1);
-        Question[] questionsAnimals = new Question[] {
-                new Question( "Pregunta de Animales 1" , true, cAnimals),
-                new Question( "Pregunta de Animales 2" , false, cAnimals),
-                new Question( "Pregunta de Animales 3" , true, cAnimals),
-        };
-
-        Category cPlants = new Category("Plantas", 2);
-        Question[] questionsPlants = new Question[] {
-                new Question( "Pregunta de Plantas 1" , true, cPlants),
-                new Question( "Pregunta de Plantas 2" , false, cPlants),
-                new Question( "Pregunta de Plantas 3" , true, cPlants),
-        };
-
-        Category cHistory = new Category("Historia", 3);
-        Question[] questionsHistory = new Question[] {
-                new Question( "Pregunta de Historia 1" , true, cHistory),
-                new Question( "Pregunta de Historia 2" , false, cHistory),
-                new Question( "Pregunta de Historia 3" , true, cHistory),
-        };
-
-        Category cProgramming = new Category("Programación", 4);
-        Question[] questionsProgramming = new Question[] {
-                new Question( "Pregunta de Progamación 1" , true, cHistory),
-                new Question( "Pregunta de Progamación 2" , false, cHistory),
-                new Question( "Pregunta de Progamación 3" , true, cHistory),
-        };
-
-        Category[] categorias = new Category[] {
-                cRandom, cAnimals, cPlants, cHistory, cProgramming
-        };
-
-        Question[] result;
-
-        Log.d(LOG_TAG, "ID de la categoria: " + this.categoryId );
-
-        switch (this.categoryId) {
-            case 1:
-                result = questionsAnimals;
-                break;
-            case 2:
-                result = questionsPlants;
-                break;
-            case 3:
-                result = questionsHistory;
-                break;
-            case 4:
-                result = questionsProgramming;
-                break;
-            default:
-            case 0:
-                result = questionsRandom;
-                break;
-        }
-        return result;
     }
 
     public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
