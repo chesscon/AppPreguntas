@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import fciencias.pdm20222.apppreguntas.repository.BankQuestionsArrayRepository;
+import fciencias.pdm20222.apppreguntas.repository.BankQuestionsRepository;
 
 public class MainActivity extends LogCicloVidaActividad {
 
@@ -47,7 +48,7 @@ public class MainActivity extends LogCicloVidaActividad {
     private int categoryId;
     private String categoryName;
 
-    private BankQuestionsArrayRepository questionsRepository;
+    private BankQuestionsRepository questionsRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

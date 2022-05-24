@@ -7,7 +7,7 @@ import fciencias.pdm20222.apppreguntas.Category;
 import fciencias.pdm20222.apppreguntas.Question;
 import fciencias.pdm20222.apppreguntas.R;
 
-public class BankQuestionsArrayRepository {
+public class BankQuestionsArrayRepository implements BankQuestionsRepository {
 
     private static final String LOG_TAG = BankQuestionsArrayRepository.class.getSimpleName();
 
