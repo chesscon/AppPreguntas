@@ -13,20 +13,25 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CategoryActivity extends AppCompatActivity {
+import fciencias.pdm20222.apppreguntas.repository.CategoryArrayRepository;
 
-    private ListView listView;
+public class CategoryActivity extends AppCompatActivity {
 
     public static final String EXTRA_CATEGORY_ID = "CATEGORY_ID";
     public static final String EXTRA_CATEGORY_NAME = "CATEGORY_NAME";
+
+    private ListView listView;
+    private CategoryArrayRepository categoriesRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
         listView = (ListView) findViewById(R.id.category_list);
+        categoriesRepository = new CategoryArrayRepository(getBaseContext());
 
-        CategoryAdapter adapter = new CategoryAdapter(this, R.layout.category_list_item, getCategoryArray());
+        ArrayList<Category> categories = categoriesRepository.getCategoryArray();
+        CategoryAdapter adapter = new CategoryAdapter(this, R.layout.category_list_item, categories);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -42,31 +47,6 @@ public class CategoryActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    private Category [] getCategoryBank() {
-        return new Category[] {
-                new Category("Aleatoria", 0),
-                new Category("Animales", 1),
-                new Category("Plantas", 2),
-                new Category( "Historia", 3),
-                new Category( "Programación", 4),
-                //new Category( "Matemáticas", 5),
-        };
-    }
-
-    private ArrayList<String> getCategoryNames() {
-        ArrayList<String> list = new ArrayList<String>();
-        Category [] categories = getCategoryBank();
-        for (Category category:categories) {
-            list.add(category.getName());
-        }
-        return list;
-    }
-
-    private ArrayList<Category> getCategoryArray() {
-        Category [] categories = getCategoryBank();
-        return new ArrayList<Category>(Arrays.asList(categories));
     }
 
 }
