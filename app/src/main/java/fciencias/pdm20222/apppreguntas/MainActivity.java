@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import fciencias.pdm20222.apppreguntas.repository.BankQuestionsArrayRepository;
+import fciencias.pdm20222.apppreguntas.repository.BankQuestionsJSONFileRepository;
 import fciencias.pdm20222.apppreguntas.repository.BankQuestionsRepository;
 
 public class MainActivity extends LogCicloVidaActividad {
@@ -57,7 +58,7 @@ public class MainActivity extends LogCicloVidaActividad {
         Log.d(TAG, "Contador Inicial: " + this.contador);
         Log.d(TAG, "Indice Inicial: " + this.indexCurrentQuestion);
 
-        questionsRepository = new BankQuestionsArrayRepository(getBaseContext());
+        questionsRepository = new BankQuestionsJSONFileRepository(getBaseContext());
 
         if (savedInstanceState != null) {
             this.contador = savedInstanceState.getInt(KEY_CONTADOR);

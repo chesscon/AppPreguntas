@@ -1,0 +1,61 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Animales",
+      "questions": [
+        {
+          "text": "Pregunta de Ejemplo 1, Animales",
+          "answerTrue": true
+        },
+        {
+          "text": "Pregunta de Ejemplo 2, Animales",
+          "answerTrue": false
+        },
+        {
+          "text": "Pregunta de Ejemplo 3, Animales",
+          "answerTrue": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Plantas",
+      "questions": [
+        {
+          "text": "Pregunta de Ejemplo 1, Plantas",
+          "answerTrue": true,
+          "category_id": 2
+        },
+        {
+          "text": "Pregunta de Ejemplo 2, Plantas",
+          "answerTrue": false,
+          "category_id": 2
+        },
+        {
+          "text": "Pregunta de Ejemplo 3, Plantas",
+          "answerTrue": true,
+          "category_id": 2
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Historia",
+      "questions": [
+        {
+          "text": "Pregunta de Ejemplo 1, Historia",
+          "answerTrue": true
+        },
+        {
+          "text": "Pregunta de Ejemplo 2, Historia",
+          "answerTrue": false
+        },
+        {
+          "text": "Pregunta de Ejemplo 3, Historia",
+          "answerTrue": true
+        }
+      ]
+    }
+  ]
+}
